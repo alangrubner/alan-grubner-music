@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Alan Grubner</title>
+  <meta name="description" content="Biography of New York violinist, composer, and recording artist Alan Grubner." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --crimson: #8B1A2B;
+      --crimson-light: #a82035;
+      --bg: #faf9f6;
+      --bg-warm: #f3f0ea;
+      --text: #1a1714;
+      --text-mid: #4a4540;
+      --text-light: #7a7068;
+      --border: #ddd8cf;
+      --font-serif: 'Lora', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.6; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 3rem;
+      background: rgba(250, 249, 246, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    .nav-logo { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 500; color: var(--text); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--crimson); }
+    /* HERO */
+    .hero { min-height: 100vh; padding-top: 72px; display: grid; grid-template-columns: 1fr 1fr; background: var(--bg); }
+    .hero-image { position: relative; overflow: hidden; background: var(--bg-warm); }
+    .hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: 30% center; display: block; }
+    .hero-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, transparent 70%, var(--bg) 100%); }
+    .hero-image-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--text); gap: 1.5rem; padding: 3rem; }
+    .hero-image-placeholder .placeholder-name { font-family: var(--font-serif); font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 500; color: rgba(255,255,255,0.08); line-height: 1.05; text-align: center; letter-spacing: 0.02em; user-select: none; }
+    .hero-image-placeholder .placeholder-line { width: 2px; height: 4rem; background: var(--crimson); }
+    .hero-content { display: flex; flex-direction: column; justify-content: center; padding: 5rem 4rem; }
+    .hero-eyebrow { font-family: var(--font-sans); font-size: 0.72rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--crimson); margin-bottom: 1.5rem; }
+    .hero-name { font-family: var(--font-serif); font-size: clamp(3rem, 5vw, 5rem); font-weight: 500; line-height: 1.05; color: var(--text); margin-bottom: 2rem; }
+    .hero-tagline { font-family: var(--font-serif); font-size: 1.1rem; font-style: italic; color: var(--text-mid); line-height: 1.75; margin-bottom: 2.5rem; max-width: 40ch; border-left: 2px solid var(--crimson); padding-left: 1.25rem; }
+    .hero-credentials { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 3rem; }
+    .hero-credential { font-size: 0.82rem; color: var(--text-light); letter-spacing: 0.02em; display: flex; align-items: center; gap: 0.6rem; }
+    .hero-credential::before { content: '—'; color: var(--crimson); font-size: 0.7rem; }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary { display: inline-block; padding: 0.85rem 2rem; background: var(--crimson); color: #fff; font-family: var(--font-sans); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+    .btn-primary:hover { background: var(--crimson-light); }
+    .btn-secondary { display: inline-block; padding: 0.85rem 2rem; border: 1px solid var(--border); color: var(--text-mid); font-family: var(--font-sans); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+    .btn-secondary:hover { border-color: var(--crimson); color: var(--crimson); }
+
+    /* HIGHLIGHTS */
+    .highlights { background: var(--crimson); padding: 1.25rem 3rem; display: flex; gap: 3rem; overflow-x: auto; align-items: center; }
+    .highlight-item { display: flex; align-items: center; gap: 0.75rem; white-space: nowrap; color: rgba(255,255,255,0.85); font-size: 0.78rem; letter-spacing: 0.08em; }
+    .highlight-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.5); flex-shrink: 0; }
+
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-image { height: 50vh; }
+      .hero-image::after { background: linear-gradient(to bottom, transparent 60%, var(--bg) 100%); }
+      .hero-content { padding: 2.5rem 1.5rem; }
+    }
+
+    /* BIO */
+    .bio-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 3rem;
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 5rem;
+    }
+
+    .bio-body p {
+      font-family: var(--font-serif);
+      font-size: 1.08rem;
+      line-height: 1.9;
+      color: var(--text-mid);
+      margin-bottom: 1.75rem;
+    }
+
+    .bio-body p:first-child::first-letter {
+      font-size: 2.75rem;
+      font-weight: 500;
+      display: inline-block;
+      vertical-align: baseline;
+      line-height: 1;
+      margin-right: 0.04em;
+      color: var(--crimson);
+      font-family: var(--font-serif);
+    }
+
+    .bio-sidebar {
+      position: sticky;
+      top: 6rem;
+      height: fit-content;
+    }
+
+    .sidebar-block {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-block:last-child { border-bottom: none; margin-bottom: 0; }
+
+    .sidebar-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .sidebar-list li {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .sidebar-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--border);
+      font-size: 0.7rem;
+    }
+
+    .sidebar-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-stat-num {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .sidebar-stat-label {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .pull-quote {
+      text-align: center;
+      padding: 4rem 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pull-quote-text {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .pull-quote-source {
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--crimson);
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--crimson);
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--crimson-light); }
+
+    /* PRESS */
+    .press-section {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--border);
+      padding: 5rem 3rem;
+    }
+
+    .press-inner { max-width: 1100px; margin: 0 auto; }
+
+    .press-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      margin-bottom: 1rem;
+    }
+
+    .press-heading {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 3rem;
+    }
+
+    .press-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .press-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+    }
+
+    .press-outlet {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      margin-bottom: 0.75rem;
+    }
+
+    .press-quote {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--border);
+      padding: 3rem;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem; }
+    .footer-brand p { font-size: 0.82rem; color: var(--text-light); margin-top: 0.5rem; }
+    .footer-nav { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .footer-nav a { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--crimson); }
+    .social-icons { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+    .social-icon { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--bg-warm); color: var(--text-mid); text-decoration: none; transition: background 0.2s, color 0.2s, transform 0.2s; }
+    .social-icon:hover { transform: scale(1.15); }
+    .social-icon svg { width: 18px; height: 18px; fill: currentColor; }
+    .social-icon[aria-label="Instagram"]:hover { background: #E1306C; color: #fff; }
+    .social-icon[aria-label="Facebook"]:hover { background: #1877F2; color: #fff; }
+    .social-icon[aria-label="YouTube"]:hover { background: #FF0000; color: #fff; }
+    .social-icon[aria-label="Spotify"]:hover { background: #1DB954; color: #fff; }
+    .social-icon[aria-label="SoundCloud"]:hover { background: #FF5500; color: #fff; }
+    .social-icon[aria-label="Bandcamp"]:hover { background: #1DA0C3; color: #fff; }
+    .social-icon[aria-label="LinkedIn"]:hover { background: #0A66C2; color: #fff; }
+    .social-icon[aria-label="TikTok"]:hover { background: #000; color: #fff; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { font-size: 0.75rem; color: var(--text-light); }
+    .footer-bottom a { color: var(--crimson); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      .page-header-inner { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem 2.5rem; }
+      .bio-section { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 1.5rem; }
+      .bio-sidebar { position: static; }
+      .press-section { padding: 3rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a href="about.html" class="nav-logo">Alan Grubner</a>
+    <ul class="nav-links">
+      <li><a href="music.html">Music</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" style="padding:0;">
+    <div class="hero-image">
+      <img src="alan-grubner-violin-mountains.JPG" alt="Alan Grubner playing violin"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      <div class="hero-image-placeholder" style="display:none;">
+        <div class="placeholder-line"></div>
+        <div class="placeholder-name">Alan<br/>Grubner</div>
+        <div class="placeholder-line"></div>
+      </div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Violinist &amp; Composer · New York &amp; Beyond</p>
+      <h1 class="hero-name">Alan<br/>Grubner</h1>
+      <p class="hero-tagline">Discerning creativity, playing, songwriting &amp; songreading.</p>
+      <div class="hero-cta">
+        <a href="music.html" class="btn-primary">Hear the Music</a>
+        <a href="contact.html" class="btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="highlights">
+    <div class="highlight-item">Carnegie Hall · 14 Concerts</div>
+    <div class="highlight-dot"></div>
+    <div class="highlight-item">CNN · ABC Good Morning America · Sirius XM</div>
+    <div class="highlight-dot"></div>
+    <div class="highlight-item">Grand Ole Opry · Shanghai World Expo 2010</div>
+    <div class="highlight-dot"></div>
+    <div class="highlight-item">Levon Helm Studios · WFMU · WWOZ</div>
+    <div class="highlight-dot"></div>
+    <div class="highlight-item">Berklee Graduate Assistantship · First Violinist in Jazz Studies</div>
+    <div class="highlight-dot"></div>
+    <div class="highlight-item">24 Years with Allan Harris &amp; Cross That River</div>
+  </div>
+
+  <div class="pull-quote">
+    <p class="pull-quote-text">"Ferocious fiddler"</p>
+    <p class="pull-quote-source">— DownBeat Magazine</p>
+  </div>
+
+  <div class="bio-section">
+    <div class="bio-body">
+      <p>Alan Grubner graduated summa cum laude from Dartmouth College with a B.A. in English. While his academic focus was on contemporary American poetry, he received both the 1998 MacDonald-Smith Music Prize for High Achievement in Musical Performance and the Heiman-Rosenthal Ensembles Award for High Achievement in the Creative Arts. Subsequently, without any prior music school experience, Berklee College of Music awarded him a Graduate Assistantship Scholarship as its first ever violinist to be accepted into the Masters in Jazz Studies program.</p>
+
+      <p>He has been an adjunct professor of violin and improvisation studies at Five Towns College, and he remains committed to giving back to the community through appearances as a teaching artist throughout the U.S. In addition to his dedication to working throughout under-resourced areas in New York City, Alan maintains an inspiring roster of private students; both on staff at the Brooklyn Waldorf School and in private practice.</p>
+
+      <p>Alan's teaching method focuses on the immediacy of inner (evaluative) and outer (somatic) feedback as friendly information. Over the years, silent retreat practice in IMS lineage Insight Meditation led Alan to an ongoing discovery: there is a path whereby we can cultivate a friendly, non-judgmental and discerning awareness. He remains committed to growing on this path; understanding music as a vehicle, a wisdom path that we can travel mindfully, ultimately leading us—beyond the instrument—into a field of mutual human Understanding, Wisdom &amp; Love.</p>
+
+      <p>The debut album from Alan Grubner's Firelight Ensemble, <em>Long Road Home</em>, features luminaries and Grammy Award winning artists, Aoife O'Donovan, Sonya Kitchell and Philip Hamilton. From 2017–2023 Mr. Grubner was a member of the acclaimed bluegrass band, Nefesh Mountain. Among others, their 2018 and 2021 releases, <em>Beneath the Open Sky</em> and <em>Songs for the Sparrows</em> feature him on fiddle, as does the groundbreaking film, <em>Beasts of the Southern Wild</em>. His work on violin and viola appears on multiple episodes of the Emmy Award-winning TV series, <em>Louie</em>.</p>
+
+      <p>A longtime collaborator with renowned jazz singer, Allan Harris, Mr. Grubner is a featured soloist in Harris' celebrated off-broadway musical, <em>Cross that River</em>. In 2024 he joined Mr. Harris' Poetry of Jazz project, and he appears on Harris' latest release, <em>The Poetry of Jazz (Live)</em>. His string arranging and solo work appears on many albums including James Maddock's <em>The Green</em>, Jenn Beaupre's <em>Reach Out</em>, and on singles from Leaders of the Shift and Seth Lojo Johnson.</p>
+
+      <p>Alan has appeared on stage at Carnegie Hall's Stern Auditorium for fourteen concerts, thus far. He has performed and/or recorded with Eddie Palmieri, Jerry Douglas, Jason Lindner, Edmar Castaneda, Joshua Geisler, Uyanga Bold, Nefesh Mountain, Sam Bush, David Grier, Tony Trischka, John Doyle, Jeff Taylor, Olivia Newton-John, Paquito D'Rivera, Christian McBride, John Shannon, Dana Leong, Chieli Minucci's Special EFX, Larry Harlow (Lincoln Center), Rana Santacruz (Lincoln Center), Sonya Kitchell and award-winning film composer, Garth Stevenson. His newest works as a Spacious.FM artist feature its founder, Joshua Geisler; master of the bansuri and ambient guitar cloud, as well as other luminaries in the ambient art space.</p>
+
+      <p>Alan has been a featured guest on multi-platinum producer and composer Anthony J. Resta's podcast, <em>Studio Secrets A to Z</em>. His playing has been featured on CNN, Sirius XM, at the Shanghai World Expo in 2010, ABC TV's <em>Good Morning America</em>, The Grand Ole Opry (Nashville, TN), Levon Helm Studios (Woodstock, NY), Woodsongs (Lexington, KY), WFMU, WKCR (NY, NY), WSM (Nashville, TN), WWOZ (New Orleans, LA), WNCW (Asheville, NC), Ditty TV (Memphis, TN).</p>
+    </div>
+
+    <aside class="bio-sidebar">
+      <div class="sidebar-block">
+        <p class="sidebar-label">Education</p>
+        <ul class="sidebar-list">
+          <li>Dartmouth College — B.A. English, summa cum laude</li>
+          <li>Berklee College of Music — Graduate Assistantship, Jazz Studies (first violinist accepted)</li>
+        </ul>
+      </div>
+      <div class="sidebar-block">
+        <p class="sidebar-label">Awards</p>
+        <ul class="sidebar-list">
+          <li>MacDonald-Smith Music Prize, 1998</li>
+          <li>Heiman-Rosenthal Ensembles Award</li>
+          <li>Berklee Graduate Assistantship Scholarship</li>
+        </ul>
+      </div>
+      <div class="sidebar-block">
+        <p class="sidebar-label">Highlights</p>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-num">14</span>
+          <span class="sidebar-stat-label">Carnegie Hall concerts</span>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-num">6</span>
+          <span class="sidebar-stat-label">Years with Nefesh Mountain</span>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-num">24</span>
+          <span class="sidebar-stat-label">Years with Allan Harris &amp; Cross That River</span>
+        </div>
+      </div>
+      <div class="sidebar-block">
+        <p class="sidebar-label">Film &amp; TV</p>
+        <ul class="sidebar-list">
+          <li>Beasts of the Southern Wild (film)</li>
+          <li>Louie — Emmy Award-winning series</li>
+          <li>Cross That River (off-Broadway)</li>
+        </ul>
+      </div>
+      <div class="sidebar-block">
+        <a href="contact.html" class="btn-primary">Booking &amp; Press Inquiries</a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- PRESS -->
+  <section class="press-section">
+    <div class="press-inner">
+      <p class="press-label">Press</p>
+      <h2 class="press-heading">In the press</h2>
+      <div class="press-grid">
+        <div class="press-item">
+          <p class="press-outlet">DownBeat Magazine · October 2025</p>
+          <p class="press-quote">"A ferocious fiddler" — featured on Allan Harris's <em>The Poetry of Jazz: Live at Blue Llama</em></p>
+        </div>
+        <div class="press-item">
+          <p class="press-outlet">The New York Times</p>
+          <p class="press-quote">Featured in coverage of Misha Piatigorsky's jazz speakeasy series</p>
+        </div>
+        <div class="press-item">
+          <p class="press-outlet">Studio Secrets A to Z Podcast</p>
+          <p class="press-quote">Featured guest of multi-platinum producer Anthony J. Resta — discussing <em>Convergence</em> and his evolution as an improviser</p>
+        </div>
+        <div class="press-item">
+          <p class="press-outlet">Film &amp; Television</p>
+          <p class="press-quote">IMDb credits include <em>Beasts of the Southern Wild</em> (Sundance Grand Jury Prize) and multiple episodes of <em>Louie</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">Alan Grubner</a>
+          <p>Violinist · Composer · Recording Artist · New York</p>
+        </div>
+        <nav class="footer-nav">
+          <a href="about.html">About</a>
+          <a href="music.html">Music</a>
+          <a href="teaching.html">Teaching</a>
+          <a href="contact.html">Contact</a>
+          <a href="https://openstrings-academy.vercel.app/about.html" target="_blank">Open Strings Academy ↗</a>
+        </nav>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/alangrubner/" target="_blank" class="social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://www.facebook.com/AlanGrubner" target="_blank" class="social-icon" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://www.youtube.com/@alangrubner/featured" target="_blank" class="social-icon" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+          <a href="https://song.link/alagrubner" target="_blank" class="social-icon" aria-label="Spotify"><svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></a>
+          <a href="https://soundcloud.com/alangrubner/sets" target="_blank" class="social-icon" aria-label="SoundCloud"><svg viewBox="0 0 24 24"><path d="M1.175 12.225c-.015 0-.023.01-.023.025l-.323 2.017.323 1.998c0 .015.008.025.023.025.014 0 .023-.01.023-.025l.366-1.998-.366-2.017c0-.015-.009-.025-.023-.025zm-.799.638c-.02 0-.033.012-.033.03L0 14.267l.343 1.382c0 .018.013.03.033.03.018 0 .032-.012.032-.03l.388-1.382-.388-1.374c0-.018-.014-.03-.032-.03zm1.599-.42c-.022 0-.04.017-.04.038l-.309 1.786.309 1.77c0 .02.018.038.04.038.022 0 .04-.018.04-.038l.35-1.77-.35-1.786c0-.021-.018-.038-.04-.038zm.8-.205c-.027 0-.047.02-.047.045l-.294 1.99.294 1.762c0 .025.02.046.047.046.027 0 .047-.021.047-.046l.333-1.762-.333-1.99c0-.025-.02-.045-.047-.045zm.8-.187c-.03 0-.054.023-.054.052l-.28 2.177.28 1.755c0 .029.024.052.054.052.029 0 .053-.023.053-.052l.318-1.755-.318-2.177c0-.029-.024-.052-.053-.052zm.8-.168c-.035 0-.06.026-.06.059l-.265 2.345.265 1.748c0 .033.025.059.06.059.034 0 .059-.026.059-.059l.301-1.748-.301-2.345c0-.033-.025-.059-.059-.059zm.8-.147c-.037 0-.066.029-.066.065l-.25 2.492.25 1.74c0 .036.029.065.066.065.037 0 .065-.029.065-.065l.284-1.74-.284-2.492c0-.036-.028-.065-.065-.065zm.8-.127c-.04 0-.072.032-.072.072l-.235 2.619.235 1.733c0 .04.032.072.072.072.04 0 .072-.032.072-.072l.267-1.733-.267-2.619c0-.04-.032-.072-.072-.072zm.8-.107c-.044 0-.079.035-.079.079l-.22 2.726.22 1.726c0 .044.035.079.079.079.043 0 .078-.035.078-.079l.25-1.726-.25-2.726c0-.044-.035-.079-.078-.079zm.8-.087c-.047 0-.085.038-.085.085l-.205 2.813.205 1.718c0 .047.038.086.085.086.047 0 .085-.039.085-.086l.233-1.718-.233-2.813c0-.047-.038-.085-.085-.085zm.799-.067c-.05 0-.091.041-.091.092l-.19 2.88.19 1.71c0 .051.041.092.091.092.051 0 .092-.041.092-.092l.216-1.71-.216-2.88c0-.051-.041-.092-.092-.092zm1.6.347c-.054 0-.099.045-.099.1l-.175 2.533.175 1.702c0 .055.045.099.099.099.055 0 .099-.044.099-.099l.199-1.702-.199-2.533c0-.055-.044-.1-.099-.1zm.8-.328c-.058 0-.105.048-.105.106l-.16 2.861.16 1.694c0 .058.047.106.105.106.058 0 .106-.048.106-.106l.182-1.694-.182-2.861c0-.058-.048-.106-.106-.106zm.8-.308c-.062 0-.113.051-.113.113l-.145 3.169.145 1.686c0 .062.051.113.113.113.062 0 .113-.051.113-.113l.165-1.686-.165-3.169c0-.062-.051-.113-.113-.113zm.8-.287c-.066 0-.12.054-.12.12l-.13 3.456.13 1.678c0 .066.054.12.12.12.066 0 .12-.054.12-.12l.148-1.678-.148-3.456c0-.066-.054-.12-.12-.12zm.8-.266c-.07 0-.127.057-.127.127l-.115 3.722.115 1.67c0 .07.057.127.127.127.07 0 .127-.057.127-.127l.133-1.67-.133-3.722c0-.07-.057-.127-.127-.127zm.8-.246c-.073 0-.133.06-.133.134l-.1 3.968.1 1.662c0 .074.06.134.133.134.074 0 .134-.06.134-.134l.116-1.662-.116-3.968c0-.074-.06-.134-.134-.134zm2.398 1.206c-.077 0-.14.063-.14.14l-.085 2.762.085 1.655c0 .077.063.14.14.14.077 0 .14-.063.14-.14l.099-1.655-.099-2.762c0-.077-.063-.14-.14-.14zm-1.6-.96c-.077 0-.14.063-.14.14l-.1 3.722.1 1.655c0 .077.063.14.14.14.077 0 .14-.063.14-.14l.116-1.655-.116-3.722c0-.077-.063-.14-.14-.14zm3.2 1.848c-.081 0-.146.066-.146.147l-.07 2.475.07 1.647c0 .081.065.147.146.147.081 0 .146-.066.146-.147l.081-1.647-.081-2.475c0-.081-.065-.147-.146-.147zm.799-.619c-.085 0-.153.069-.153.153l-.055 3.094.055 1.639c0 .084.068.153.153.153.085 0 .153-.069.153-.153l.063-1.639-.063-3.094c0-.084-.068-.153-.153-.153zm.8-.372c-.089 0-.16.072-.16.16l-.04 3.466.04 1.632c0 .089.071.16.16.16.089 0 .16-.071.16-.16l.046-1.632-.046-3.466c0-.088-.071-.16-.16-.16zm.8-.133c-.092 0-.167.075-.167.167l-.025 3.599.025 1.624c0 .092.075.167.167.167.093 0 .167-.075.167-.167l.029-1.624-.029-3.599c0-.092-.074-.167-.167-.167zm1.598 1.252c-.415-1.71-1.963-2.98-3.81-2.98-.49 0-.963.093-1.396.261-.162.063-.206.128-.207.185v5.77c.001.06.047.111.107.116h5.306c.315 0 .571-.255.571-.571 0-1.436-.571-2.781-1.571-2.781z"/></svg></a>
+          <a href="https://alangrubner.bandcamp.com/" target="_blank" class="social-icon" aria-label="Bandcamp"><svg viewBox="0 0 24 24"><path d="M0 18.75l7.437-13.5H24l-7.438 13.5z"/></svg></a>
+          <a href="https://www.linkedin.com/in/alan-grubner-99082519/" target="_blank" class="social-icon" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://www.tiktok.com/@alangrubner" target="_blank" class="social-icon" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Alan Grubner. All rights reserved.</p>
+        <p>Teaching at <a href="https://openstrings-academy.vercel.app/about.html" target="_blank">Open Strings Academy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 20); });
+  </script>
+</body>
+</html>
