@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music — Alan Grubner</title>
+  <meta name="description" content="Recordings and releases from New York violinist and composer Alan Grubner." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --crimson: #8B1A2B; --crimson-light: #a82035;
+      --bg: #faf9f6; --bg-warm: #f3f0ea;
+      --text: #1a1714; --text-mid: #4a4540; --text-light: #7a7068;
+      --border: #ddd8cf;
+      --font-serif: 'Lora', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.6; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 3rem; background: rgba(250,249,246,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); transition: box-shadow 0.3s; }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    .nav-logo { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 500; color: var(--text); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--crimson); }
+    .nav-links .nav-current { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--crimson); }
+
+    .page-header { padding-top: 72px; background: var(--bg-warm); border-bottom: 1px solid var(--border); }
+    .page-header-inner { max-width: 1100px; margin: 0 auto; padding: 5rem 3rem 4rem; }
+    .page-eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--crimson); margin-bottom: 1rem; }
+    .page-title { font-family: var(--font-serif); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.1; margin-bottom: 1.5rem; }
+    .page-intro { font-family: var(--font-serif); font-size: 1.05rem; font-style: italic; color: var(--text-mid); max-width: 60ch; line-height: 1.7; }
+
+    /* SONGLINK NOTE */
+    .songlink-note {
+      background: #fff8e7;
+      border: 1px solid #e8d9a0;
+      border-left: 3px solid #c9a227;
+      padding: 0.85rem 1.25rem;
+      font-size: 0.8rem;
+      color: #6b5c1e;
+      max-width: 1100px;
+      margin: 2rem auto 0;
+    }
+
+    /* RELEASES */
+    .releases { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
+
+    .section-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--crimson); margin-bottom: 1rem; }
+    .section-heading { font-family: var(--font-serif); font-size: 2rem; font-weight: 500; margin-bottom: 3rem; }
+
+    .release-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+
+    .release-card {
+      border: 1px solid var(--border);
+      background: var(--bg);
+      transition: box-shadow 0.2s;
+      overflow: hidden;
+    }
+    .release-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+
+    .release-artwork {
+      aspect-ratio: 1;
+      background: var(--bg-warm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .release-artwork-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .release-artwork-icon {
+      width: 48px;
+      height: 48px;
+      color: var(--border);
+    }
+
+    .release-artwork-icon svg { width: 100%; height: 100%; fill: currentColor; }
+
+    .release-info { padding: 1.5rem; }
+
+    .release-type {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      margin-bottom: 0.4rem;
+    }
+
+    .release-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .release-artist {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .release-desc {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .release-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    .release-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 0.9rem;
+      border: 1px solid var(--border);
+      font-size: 0.73rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .release-link:hover { border-color: var(--crimson); color: var(--crimson); }
+    .release-link svg { width: 12px; height: 12px; fill: currentColor; }
+
+    .release-link.primary {
+      background: var(--crimson);
+      border-color: var(--crimson);
+      color: #fff;
+    }
+    .release-link.primary:hover { background: var(--crimson-light); border-color: var(--crimson-light); }
+
+    /* APPEARANCES */
+    .appearances {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--border);
+      padding: 5rem 3rem;
+    }
+    .appearances-inner { max-width: 1100px; margin: 0 auto; }
+
+    .appearances-list { display: flex; flex-direction: column; gap: 0; }
+
+    .appearance-item {
+      display: grid;
+      grid-template-columns: 1fr 2fr auto;
+      gap: 2rem;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .appearance-item:first-child { border-top: 1px solid var(--border); }
+
+    .appearance-artist {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .appearance-title {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text-mid);
+    }
+
+    .appearance-role {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      white-space: nowrap;
+    }
+
+    /* FOOTER */
+    footer { background: var(--bg-warm); border-top: 1px solid var(--border); padding: 3rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem; }
+    .footer-brand p { font-size: 0.82rem; color: var(--text-light); margin-top: 0.5rem; }
+    .footer-nav { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .footer-nav a { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--crimson); }
+    .social-icons { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .social-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--border); color: var(--text-mid); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+    .social-icon:hover { border-color: var(--crimson); color: var(--crimson); }
+    .social-icon svg { width: 16px; height: 16px; fill: currentColor; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { font-size: 0.75rem; color: var(--text-light); }
+    .footer-bottom a { color: var(--crimson); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      .page-header-inner { padding: 3rem 1.5rem 2.5rem; }
+      .releases { padding: 3rem 1.5rem; }
+      .appearances { padding: 3rem 1.5rem; }
+      .appearance-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      footer { padding: 2rem 1.5rem; }
+      .songlink-note { margin: 1.5rem 1.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a href="about.html" class="nav-logo">Alan Grubner</a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><span class="nav-current">Music</span></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-header">
+    <div class="page-header-inner">
+      <p class="page-eyebrow">Recordings &amp; Releases</p>
+      <h1 class="page-title">Music</h1>
+      <p class="page-intro">Albums, collaborations, and credits.</p>
+    </div>
+  </header>
+
+  <!-- LEAD RELEASES -->
+  <div class="releases">
+    <p class="section-label">As Leader</p>
+    <h2 class="section-heading">Own Projects</h2>
+    <div class="release-grid">
+
+      <!-- Convergence -->
+      <div class="release-card">
+        <div class="release-artwork">
+          <div class="release-artwork-placeholder">
+            <div class="release-artwork-icon"><svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></div>
+            <span style="font-size:0.72rem; color: var(--text-light); letter-spacing: 0.06em; text-transform: uppercase;">Artwork coming</span>
+          </div>
+        </div>
+        <div class="release-info">
+          <p class="release-type">Album · Alan Grubner</p>
+          <h3 class="release-title">Convergence</h3>
+          <p class="release-artist">Alan Grubner</p>
+          <p class="release-desc">Alan's album as a leader. Featured on multi-platinum producer Anthony J. Resta's podcast, <em>Studio Secrets A to Z</em>.</p>
+          <div class="release-links">
+            <a href="https://spacious.fm" target="_blank" class="release-link primary">
+              Stream ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Long Road Home -->
+      <div class="release-card">
+        <div class="release-artwork">
+          <div class="release-artwork-placeholder">
+            <div class="release-artwork-icon"><svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></div>
+            <span style="font-size:0.72rem; color: var(--text-light); letter-spacing: 0.06em; text-transform: uppercase;">Artwork coming</span>
+          </div>
+        </div>
+        <div class="release-info">
+          <p class="release-type">Album · Firelight Ensemble</p>
+          <h3 class="release-title">Long Road Home</h3>
+          <p class="release-artist">Alan Grubner's Firelight Ensemble</p>
+          <p class="release-desc">Debut album featuring Grammy Award winning artists Aoife O'Donovan, Sonya Kitchell, and Philip Hamilton.</p>
+          <div class="release-links">
+            <a href="https://song.link/alagrubner" target="_blank" class="release-link primary">Stream ↗</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- APPEARANCES -->
+  <section class="appearances">
+    <div class="appearances-inner">
+      <p class="section-label">As Featured Artist</p>
+      <h2 class="section-heading">Selected Collaborations &amp; Credits</h2>
+      <div class="appearances-list">
+
+        <div class="appearance-item">
+          <span class="appearance-artist">Allan Harris</span>
+          <span class="appearance-title">The Poetry of Jazz (Live) · Cross That River (off-Broadway)</span>
+          <span class="appearance-role">Featured Soloist / Jazz &amp; Poetry Project</span>
+        </div>
+
+        <div class="appearance-item">
+          <span class="appearance-artist">Nefesh Mountain</span>
+          <span class="appearance-title">Beneath the Open Sky (2018) · Songs for the Sparrows (2021)</span>
+          <span class="appearance-role">Fiddle · Member 2017–2023</span>
+        </div>
+
+        <div class="appearance-item">
+          <span class="appearance-artist">James Maddock</span>
+          <span class="appearance-title">The Green</span>
+          <span class="appearance-role">String Arranging &amp; Solo Violin</span>
+        </div>
+
+        <div class="appearance-item">
+          <span class="appearance-artist">Jenn Beaupre</span>
+          <span class="appearance-title">Reach Out</span>
+          <span class="appearance-role">String Arranging &amp; Solo Violin</span>
+        </div>
+
+        <div class="appearance-item">
+          <span class="appearance-artist">Leaders of the Shift · Seth Lojo Johnson</span>
+          <span class="appearance-title">Various Singles</span>
+          <span class="appearance-role">String Arranging &amp; Solo Violin</span>
+        </div>
+
+        <div class="appearance-item">
+          <span class="appearance-artist">Spacious.FM</span>
+          <span class="appearance-title">Works with Joshua Geisler (coming soon)</span>
+          <span class="appearance-role">Violin · Ambient / Art Music</span>
+        </div>
+
+        <div class="appearance-item">
+          <span class="appearance-artist">Film &amp; Television</span>
+          <span class="appearance-title">Beasts of the Southern Wild · Louie (TV Series)</span>
+          <span class="appearance-role">Fiddle / Violin &amp; Viola</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="about.html" class="nav-logo">Alan Grubner</a>
+          <p>Violinist · Composer · Recording Artist · New York</p>
+        </div>
+        <nav class="footer-nav">
+          <a href="about.html">About</a>
+          <a href="music.html">Music</a>
+          <a href="teaching.html">Teaching</a>
+          <a href="contact.html">Contact</a>
+          <a href="https://openstrings-academy.vercel.app/about.html" target="_blank">Open Strings Academy ↗</a>
+        </nav>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/alangrubner/" target="_blank" class="social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://www.facebook.com/AlanGrubner" target="_blank" class="social-icon" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://www.youtube.com/@alangrubner/featured" target="_blank" class="social-icon" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+          <a href="https://song.link/alagrubner" target="_blank" class="social-icon" aria-label="Spotify"><svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></a>
+          <a href="https://soundcloud.com/alangrubner/sets" target="_blank" class="social-icon" aria-label="SoundCloud"><svg viewBox="0 0 24 24"><path d="M11.56 8.87V17h8.76c.71-.01 1.3-.3 1.74-.78.44-.47.67-1.06.67-1.72 0-1.23-.9-2.27-2.1-2.45.05-.24.08-.49.08-.74 0-2.16-1.75-3.91-3.91-3.91-1.29 0-2.43.62-3.14 1.57-.03 0-.07-.01-.1-.1z"/></svg></a>
+          <a href="https://alangrubner.bandcamp.com/" target="_blank" class="social-icon" aria-label="Bandcamp"><svg viewBox="0 0 24 24"><path d="M0 18.75l7.437-13.5H24l-7.438 13.5z"/></svg></a>
+          <a href="https://www.linkedin.com/in/alan-grubner-99082519/" target="_blank" class="social-icon" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://www.tiktok.com/@alangrubner" target="_blank" class="social-icon" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Alan Grubner. All rights reserved.</p>
+        <p>Teaching at <a href="https://openstrings-academy.vercel.app/about.html" target="_blank">Open Strings Academy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 20); });
+  </script>
+</body>
+</html>
