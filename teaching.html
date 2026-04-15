@@ -240,6 +240,17 @@
     .social-icons { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
     .social-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--border); color: var(--text-mid); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
     .social-icon:hover { border-color: var(--crimson); color: var(--crimson); }
+    .social-icon[aria-label="Instagram"]:hover { background: #E1306C; border-color: #E1306C; color: #fff; }
+    .social-icon[aria-label="Facebook"]:hover { background: #1877F2; border-color: #1877F2; color: #fff; }
+    .social-icon[aria-label="YouTube"]:hover { background: #FF0000; border-color: #FF0000; color: #fff; }
+    .social-icon[aria-label="Spotify"]:hover { background: #1DB954; border-color: #1DB954; color: #fff; }
+    .social-icon[aria-label="SoundCloud"]:hover { background: #FF5500; border-color: #FF5500; color: #fff; }
+    .social-icon[aria-label="Apple Music"]:hover { background: #FC3C44; border-color: #FC3C44; color: #fff; }
+    .social-icon[aria-label="Spacious.FM"]:hover { background: #0099CC; border-color: #0099CC; color: #fff; }
+    .social-icon[aria-label="Spacious.FM"]:hover img { filter: invert(0) !important; }
+    .social-icon[aria-label="Bandcamp"]:hover { background: #1DA0C3; border-color: #1DA0C3; color: #fff; }
+    .social-icon[aria-label="LinkedIn"]:hover { background: #0A66C2; border-color: #0A66C2; color: #fff; }
+    .social-icon[aria-label="TikTok"]:hover { background: #000; border-color: #000; color: #fff; }
     .social-icon svg { width: 16px; height: 16px; fill: currentColor; }
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
     .footer-bottom p { font-size: 0.75rem; color: var(--text-light); }
@@ -265,6 +276,7 @@
     <ul class="nav-links">
       <li><a href="about.html">About</a></li>
       <li><a href="music.html">Music</a></li>
+      <li><a href="watch.html">Watch</a></li>
       <li><span class="nav-current">Teaching</span></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -296,19 +308,19 @@
       <div class="pillars">
         <div class="pillar">
           <p class="pillar-title">Inner &amp; Outer Feedback</p>
-          <p class="pillar-desc">Learning to receive evaluative (inner) and somatic (outer) feedback as friendly information.</p>
+          <p class="pillar-desc">— Learning to receive evaluative (inner) and somatic (outer) feedback as friendly information</p>
         </div>
         <div class="pillar">
           <p class="pillar-title">Non-Judgmental Awareness</p>
-          <p class="pillar-desc">Cultivating a friendly, non-judgmental and discerning awareness through the instrument.</p>
+          <p class="pillar-desc">— Cultivating a friendly, non-judgmental and discerning awareness through the instrument</p>
         </div>
         <div class="pillar">
           <p class="pillar-title">Improvisation</p>
-          <p class="pillar-desc">Rooted in Alan's jazz studies at Berklee, bringing improvisation into classical and folk contexts.</p>
+          <p class="pillar-desc">— Rooted in Alan's M.M. in jazz studies at Berklee College of Music, bringing improvisation into classical and folk contexts</p>
         </div>
         <div class="pillar">
           <p class="pillar-title">Music as a Wisdom Path</p>
-          <p class="pillar-desc">Understanding music as a vehicle that leads us — beyond the instrument — into a field of mutual human Understanding, Wisdom &amp; Love.</p>
+          <p class="pillar-desc">— Understanding music as a vehicle that leads us — beyond the instrument — into a field of mutual human Understanding, Wisdom &amp; Love</p>
         </div>
       </div>
     </div>
@@ -320,7 +332,7 @@
       <div>
         <p class="section-label">Online Platform</p>
         <h2 class="section-heading">Open Strings Academy</h2>
-        <p>Alan's online education platform for string players.</p>
+        <p>Alan's online education platform for string players</p>
         <a href="https://openstrings-academy.vercel.app/about.html" target="_blank" class="btn-white">Visit Open Strings Academy ↗</a>
       </div>
       <div class="osa-features">
@@ -351,24 +363,24 @@
       <h2 class="section-heading">Current teaching positions</h2>
       <div class="positions-grid">
         <div class="position-card">
-          <p class="position-role">School Position</p>
-          <h3 class="position-title">Brooklyn Waldorf School</h3>
-          <p class="position-desc">On faculty for violin instruction.</p>
-        </div>
-        <div class="position-card">
           <p class="position-role">Private Practice</p>
           <h3 class="position-title">Private Lessons</h3>
-          <p class="position-desc">One-on-one violin and improvisation study. All levels. In-person (New York) and online.</p>
+          <p class="position-desc">One-on-One violin and strings improvisation study — all levels — in-person (New York City) and online (Everywhere)</p>
+        </div>
+        <div class="position-card">
+          <p class="position-role">School Position</p>
+          <h3 class="position-title">Brooklyn Waldorf School</h3>
+          <p class="position-desc">On faculty for violin &amp; viola instruction</p>
         </div>
         <div class="position-card">
           <p class="position-role">Community Work</p>
           <h3 class="position-title">Teaching Artist</h3>
-          <p class="position-desc">Appearances throughout the U.S. and in under-resourced areas of New York City.</p>
+          <p class="position-desc">Appearances throughout the U.S. and in under-resourced areas of New York City</p>
         </div>
         <div class="position-card">
           <p class="position-role">Former Position</p>
           <h3 class="position-title">Five Towns College</h3>
-          <p class="position-desc">Former adjunct professor of violin and improvisation studies.</p>
+          <p class="position-desc">Former adjunct professor of violin and improvisation studies</p>
         </div>
       </div>
       <a href="contact.html" class="btn-primary">Inquire About Lessons</a>
@@ -380,11 +392,12 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="about.html" class="nav-logo">Alan Grubner</a>
-          <p>Violinist · Composer · Recording Artist · New York</p>
+          <p>Violinist · Composer · Recording Artist · New York City &amp; Beyond</p>
         </div>
         <nav class="footer-nav">
           <a href="about.html">About</a>
           <a href="music.html">Music</a>
+          <a href="watch.html">Watch</a>
           <a href="teaching.html">Teaching</a>
           <a href="contact.html">Contact</a>
           <a href="https://openstrings-academy.vercel.app/about.html" target="_blank">Open Strings Academy ↗</a>
@@ -394,6 +407,9 @@
           <a href="https://www.facebook.com/AlanGrubner" target="_blank" class="social-icon" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
           <a href="https://www.youtube.com/@alangrubner/featured" target="_blank" class="social-icon" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
           <a href="https://song.link/alagrubner" target="_blank" class="social-icon" aria-label="Spotify"><svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></a>
+          <a href="https://soundcloud.com/alangrubner/sets" target="_blank" class="social-icon" aria-label="SoundCloud"><svg viewBox="0 0 24 24"><path d="M11.56 8.87V17h8.76c.71-.01 1.3-.3 1.74-.78.44-.47.67-1.06.67-1.72 0-1.23-.9-2.27-2.1-2.45.05-.24.08-.49.08-.74 0-2.16-1.75-3.91-3.91-3.91-1.29 0-2.43.62-3.14 1.57-.03 0-.07-.01-.1-.1z"/></svg></a>
+          <a href="https://music.apple.com/tr/album/long-road-home/476302784" target="_blank" class="social-icon" aria-label="Apple Music"><svg viewBox="0 0 24 24"><ellipse cx="6.5" cy="17.5" rx="3" ry="2" transform="rotate(-20 6.5 17.5)"/><ellipse cx="14.5" cy="14.5" rx="3" ry="2" transform="rotate(-20 14.5 14.5)"/><rect x="9" y="7" width="1.5" height="11"/><rect x="17" y="4" width="1.5" height="11"/><polygon points="9,1 18.5,-2 18.5,4 9,7"/></svg></a>
+          <a href="https://spacious.fm" target="_blank" class="social-icon" aria-label="Spacious.FM" style="padding:0; overflow:hidden; border-radius:4px;"><img src="spacious.jpeg" alt="Spacious.FM" style="width:100%; height:100%; object-fit:cover; display:block; filter:invert(1); transform:scale(1.15);"></a>
           <a href="https://alangrubner.bandcamp.com/" target="_blank" class="social-icon" aria-label="Bandcamp"><svg viewBox="0 0 24 24"><path d="M0 18.75l7.437-13.5H24l-7.438 13.5z"/></svg></a>
           <a href="https://www.tiktok.com/@alangrubner" target="_blank" class="social-icon" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
         </div>

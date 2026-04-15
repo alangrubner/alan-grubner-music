@@ -5,7 +5,7 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Music — Alan Grubner</title>
-  <meta name="description" content="Recordings and releases from New York violinist and composer Alan Grubner." />
+  <meta name="description" content="Recordings and releases from New York City violinist and composer Alan Grubner." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -54,9 +54,10 @@
     .section-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--crimson); margin-bottom: 1rem; }
     .section-heading { font-family: var(--font-serif); font-size: 2rem; font-weight: 500; margin-bottom: 3rem; }
 
-    .release-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+    .release-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 
     .release-card {
+      min-width: 0;
       border: 1px solid var(--border);
       background: var(--bg);
       transition: box-shadow 0.2s;
@@ -156,17 +157,33 @@
     }
     .appearances-inner { max-width: 1100px; margin: 0 auto; }
 
+    /* Inline preview player */
+    .preview-player { display: flex; align-items: center; gap: 0.75rem; min-width: 160px; }
+    .preview-btn {
+      flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+      border: 1.5px solid var(--crimson); background: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+    }
+    .preview-btn:hover { background: rgba(139,26,43,0.06); }
+    .preview-btn svg { width: 14px; height: 14px; fill: var(--crimson); }
+    .preview-bar-wrap { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .preview-bar { height: 2px; background: var(--border); border-radius: 1px; overflow: hidden; }
+    .preview-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--crimson), #d4708f); transition: width 0.1s linear; }
+    .preview-label { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); }
+
     .appearances-list { display: flex; flex-direction: column; gap: 0; }
 
     .appearance-item {
       display: grid;
-      grid-template-columns: 1fr 2fr auto;
+      grid-template-columns: 180px 1fr auto;
       gap: 2rem;
       align-items: center;
       padding: 1.5rem 0;
       border-bottom: 1px solid var(--border);
     }
+    .appearance-item > * { min-width: 0; }
     .appearance-item:first-child { border-top: 1px solid var(--border); }
+    .appearances-arranger .appearance-title { padding-left: 2rem; }
 
     .appearance-artist {
       font-size: 0.78rem;
@@ -180,6 +197,9 @@
       font-size: 1rem;
       font-style: italic;
       color: var(--text-mid);
+      display: block;
+      justify-self: stretch;
+      text-align: left;
     }
 
     .appearance-role {
@@ -199,6 +219,17 @@
     .social-icons { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
     .social-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--border); color: var(--text-mid); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
     .social-icon:hover { border-color: var(--crimson); color: var(--crimson); }
+    .social-icon[aria-label="Instagram"]:hover { background: #E1306C; border-color: #E1306C; color: #fff; }
+    .social-icon[aria-label="Facebook"]:hover { background: #1877F2; border-color: #1877F2; color: #fff; }
+    .social-icon[aria-label="YouTube"]:hover { background: #FF0000; border-color: #FF0000; color: #fff; }
+    .social-icon[aria-label="Spotify"]:hover { background: #1DB954; border-color: #1DB954; color: #fff; }
+    .social-icon[aria-label="SoundCloud"]:hover { background: #FF5500; border-color: #FF5500; color: #fff; }
+    .social-icon[aria-label="Apple Music"]:hover { background: #FC3C44; border-color: #FC3C44; color: #fff; }
+    .social-icon[aria-label="Spacious.FM"]:hover { background: #0099CC; border-color: #0099CC; color: #fff; }
+    .social-icon[aria-label="Spacious.FM"]:hover img { filter: invert(0) !important; }
+    .social-icon[aria-label="Bandcamp"]:hover { background: #1DA0C3; border-color: #1DA0C3; color: #fff; }
+    .social-icon[aria-label="LinkedIn"]:hover { background: #0A66C2; border-color: #0A66C2; color: #fff; }
+    .social-icon[aria-label="TikTok"]:hover { background: #000; border-color: #000; color: #fff; }
     .social-icon svg { width: 16px; height: 16px; fill: currentColor; }
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
     .footer-bottom p { font-size: 0.75rem; color: var(--text-light); }
@@ -223,6 +254,7 @@
     <ul class="nav-links">
       <li><a href="about.html">About</a></li>
       <li><span class="nav-current">Music</span></li>
+      <li><a href="watch.html">Watch</a></li>
       <li><a href="teaching.html">Teaching</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -231,34 +263,35 @@
   <header class="page-header">
     <div class="page-header-inner">
       <p class="page-eyebrow">Recordings &amp; Releases</p>
-      <h1 class="page-title">Music</h1>
-      <p class="page-intro">Albums, collaborations, and credits.</p>
+      <h1 class="page-title" style="font-size: clamp(1.8rem, 3vw, 2.6rem);">Albums, Collaborations &amp; Credits</h1>
     </div>
   </header>
 
   <!-- LEAD RELEASES -->
   <div class="releases">
     <p class="section-label">As Leader</p>
-    <h2 class="section-heading">Own Projects</h2>
     <div class="release-grid">
 
       <!-- Convergence -->
       <div class="release-card">
         <div class="release-artwork">
-          <div class="release-artwork-placeholder">
-            <div class="release-artwork-icon"><svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></div>
-            <span style="font-size:0.72rem; color: var(--text-light); letter-spacing: 0.06em; text-transform: uppercase;">Artwork coming</span>
-          </div>
+          <img src="convergence.jpg" alt="Convergence album cover" style="width:100%; height:100%; object-fit:cover; display:block;">
         </div>
         <div class="release-info">
           <p class="release-type">Album · Alan Grubner</p>
           <h3 class="release-title">Convergence</h3>
           <p class="release-artist">Alan Grubner</p>
           <p class="release-desc">Alan's album as a leader. Featured on multi-platinum producer Anthony J. Resta's podcast, <em>Studio Secrets A to Z</em>.</p>
-          <div class="release-links">
-            <a href="https://spacious.fm" target="_blank" class="release-link primary">
-              Stream ↗
-            </a>
+          <div class="preview-player" style="margin-top:1rem;">
+            <audio class="preview-audio" src="preview-convergence.mp3" preload="none"></audio>
+            <button class="preview-btn">
+              <svg class="play-ico" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <svg class="pause-ico" viewBox="0 0 24 24" style="display:none;"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>
+            </button>
+            <div class="preview-bar-wrap">
+              <div class="preview-bar"><div class="preview-fill"></div></div>
+              <div class="preview-label">Preview</div>
+            </div>
           </div>
         </div>
       </div>
@@ -266,24 +299,164 @@
       <!-- Long Road Home -->
       <div class="release-card">
         <div class="release-artwork">
-          <div class="release-artwork-placeholder">
-            <div class="release-artwork-icon"><svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></div>
-            <span style="font-size:0.72rem; color: var(--text-light); letter-spacing: 0.06em; text-transform: uppercase;">Artwork coming</span>
-          </div>
+          <img src="long-road-home.jpg" alt="Long Road Home album cover" style="width:100%; height:100%; object-fit:cover; display:block;">
         </div>
         <div class="release-info">
           <p class="release-type">Album · Firelight Ensemble</p>
           <h3 class="release-title">Long Road Home</h3>
           <p class="release-artist">Alan Grubner's Firelight Ensemble</p>
           <p class="release-desc">Debut album featuring Grammy Award winning artists Aoife O'Donovan, Sonya Kitchell, and Philip Hamilton.</p>
-          <div class="release-links">
-            <a href="https://song.link/alagrubner" target="_blank" class="release-link primary">Stream ↗</a>
+          <div class="preview-player" style="margin-top:1rem;">
+            <audio class="preview-audio" src="preview-long-road-home.mp3" preload="none"></audio>
+            <button class="preview-btn">
+              <svg class="play-ico" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <svg class="pause-ico" viewBox="0 0 24 24" style="display:none;"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>
+            </button>
+            <div class="preview-bar-wrap">
+              <div class="preview-bar"><div class="preview-fill"></div></div>
+              <div class="preview-label">Preview</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resurgence -->
+      <div class="release-card">
+        <div class="release-artwork">
+          <img src="resurgence.jpg" alt="Resurgence album cover" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+        <div class="release-info">
+          <p class="release-type">Album · Alan Grubner &amp; Bansara</p>
+          <h3 class="release-title">Resurgence</h3>
+          <p class="release-artist">Alan Grubner &amp; Bansara</p>
+          <p class="release-desc">Alan's latest release &amp; the follow-up to Convergence. Coming out on the new Spacious.fm platform.</p>
+          <div class="preview-player" style="margin-top:1rem;">
+            <audio class="preview-audio" src="preview-resurgence.mp3" preload="none"></audio>
+            <button class="preview-btn">
+              <svg class="play-ico" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <svg class="pause-ico" viewBox="0 0 24 24" style="display:none;"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>
+            </button>
+            <div class="preview-bar-wrap">
+              <div class="preview-bar"><div class="preview-fill"></div></div>
+              <div class="preview-label">Preview</div>
+            </div>
           </div>
         </div>
       </div>
 
     </div>
   </div>
+
+  <!-- STRING ARRANGEMENTS -->
+  <section class="appearances appearances-arranger">
+    <div class="appearances-inner">
+      <p class="section-label">As Arranger &amp; Performer</p>
+      <h2 class="section-heading">Selected String Arrangements &amp; Recordings</h2>
+      <div class="appearances-list">
+
+        <div class="appearance-item">
+          <span class="appearance-artist">James Maddock</span>
+          <span class="appearance-title">Speaking for the Man</span>
+          <div style="display:flex; align-items:center; gap:1rem;">
+            <img src="james-maddock-the-green.jpg" alt="James Maddock – The Green" style="width:56px; height:56px; object-fit:cover; display:block; flex-shrink:0;">
+            <div class="preview-player">
+              <audio class="preview-audio" src="preview-maddock.mp3" preload="none"></audio>
+              <button class="preview-btn">
+                <svg class="play-ico" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="pause-ico" viewBox="0 0 24 24" style="display:none;"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>
+              </button>
+              <div class="preview-bar-wrap">
+                <div class="preview-bar"><div class="preview-fill"></div></div>
+                <div class="preview-label">Preview</div>
+              </div>
+            </div>
+          </div>
+          <span class="appearance-role">String Arranging &amp; Solo Violin</span>
+        </div>
+
+        <div class="appearance-item">
+          <span class="appearance-artist">Jenn Beaupré</span>
+          <span class="appearance-title">Angel Who's Lost</span>
+          <div style="display:flex; align-items:center; gap:1rem;">
+            <img src="jenn-beaupre-reach-out.jpg" alt="Jenn Beaupré – Reach Out" style="width:56px; height:56px; object-fit:cover; display:block; flex-shrink:0;">
+            <div class="preview-player">
+              <audio class="preview-audio" src="preview-beaupre.mp3" preload="none"></audio>
+              <button class="preview-btn">
+                <svg class="play-ico" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="pause-ico" viewBox="0 0 24 24" style="display:none;"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>
+              </button>
+              <div class="preview-bar-wrap">
+                <div class="preview-bar"><div class="preview-fill"></div></div>
+                <div class="preview-label">Preview</div>
+              </div>
+            </div>
+          </div>
+          <span class="appearance-role">String Arranging &amp; All Strings</span>
+        </div>
+
+        <div class="appearance-item">
+          <span class="appearance-artist">Nefesh Mountain</span>
+          <span class="appearance-title">Suite for a Golden Butterfly</span>
+          <div style="display:flex; align-items:center; gap:1rem;">
+            <img src="nefesh-mountain-songs-for-the-sparrows.jpg" alt="Nefesh Mountain – Songs for the Sparrows" style="width:56px; height:56px; object-fit:cover; display:block; flex-shrink:0;">
+            <div class="preview-player">
+              <audio class="preview-audio" src="preview-nefesh.mp3" preload="none"></audio>
+              <button class="preview-btn">
+                <svg class="play-ico" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="pause-ico" viewBox="0 0 24 24" style="display:none;"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>
+              </button>
+              <div class="preview-bar-wrap">
+                <div class="preview-bar"><div class="preview-fill"></div></div>
+                <div class="preview-label">Preview</div>
+              </div>
+            </div>
+          </div>
+          <span class="appearance-role">Fiddle, Violins</span>
+        </div>
+
+        <div class="appearance-item">
+          <span class="appearance-artist">theSHIFT</span>
+          <span class="appearance-title">Forever is When</span>
+          <div style="display:flex; align-items:center; gap:1rem;">
+            <img src="theshift-forever-is-when.jpg" alt="theSHIFT – Forever is When" style="width:56px; height:56px; object-fit:cover; display:block; flex-shrink:0;">
+            <div class="preview-player">
+              <audio class="preview-audio" src="preview-theshift.mp3" preload="none"></audio>
+              <button class="preview-btn">
+                <svg class="play-ico" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="pause-ico" viewBox="0 0 24 24" style="display:none;"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>
+              </button>
+              <div class="preview-bar-wrap">
+                <div class="preview-bar"><div class="preview-fill"></div></div>
+                <div class="preview-label">Preview</div>
+              </div>
+            </div>
+          </div>
+          <span class="appearance-role">Orchestral Arrangement, All Strings</span>
+        </div>
+
+        <div class="appearance-item">
+          <span class="appearance-artist">Stand Up Eight</span>
+          <span class="appearance-title">Bridge 20</span>
+          <div style="display:flex; align-items:center; gap:1rem;">
+            <img src="stand-up-eight-facing-the-fall.jpg" alt="Stand Up Eight – Facing the Fall" style="width:56px; height:56px; object-fit:cover; display:block; flex-shrink:0;">
+            <div class="preview-player">
+              <audio class="preview-audio" src="preview-standupeight.mp3" preload="none"></audio>
+              <button class="preview-btn">
+                <svg class="play-ico" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="pause-ico" viewBox="0 0 24 24" style="display:none;"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>
+              </button>
+              <div class="preview-bar-wrap">
+                <div class="preview-bar"><div class="preview-fill"></div></div>
+                <div class="preview-label">Preview</div>
+              </div>
+            </div>
+          </div>
+          <span class="appearance-role">Co-producer, Drums, Violin</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <!-- APPEARANCES -->
   <section class="appearances">
@@ -317,14 +490,20 @@
         </div>
 
         <div class="appearance-item">
-          <span class="appearance-artist">Leaders of the Shift · Seth Lojo Johnson</span>
-          <span class="appearance-title">Various Singles</span>
-          <span class="appearance-role">String Arranging &amp; Solo Violin</span>
+          <span class="appearance-artist">theSHIFT</span>
+          <span class="appearance-title">Forever is When</span>
+          <span class="appearance-role">Orchestral Arranging &amp; All Strings</span>
+        </div>
+
+        <div class="appearance-item">
+          <span class="appearance-artist">Seth LoJo Johnson</span>
+          <span class="appearance-title">Pennycluster</span>
+          <span class="appearance-role">Violins &amp; Solo</span>
         </div>
 
         <div class="appearance-item">
           <span class="appearance-artist">Spacious.FM</span>
-          <span class="appearance-title">Works with Joshua Geisler (coming soon)</span>
+          <span class="appearance-title">Convergence (2026) &amp; Resurgence (2026)</span>
           <span class="appearance-role">Violin · Ambient / Art Music</span>
         </div>
 
@@ -343,11 +522,12 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="about.html" class="nav-logo">Alan Grubner</a>
-          <p>Violinist · Composer · Recording Artist · New York</p>
+          <p>Violinist · Composer · Recording Artist · New York City &amp; Beyond</p>
         </div>
         <nav class="footer-nav">
           <a href="about.html">About</a>
           <a href="music.html">Music</a>
+          <a href="watch.html">Watch</a>
           <a href="teaching.html">Teaching</a>
           <a href="contact.html">Contact</a>
           <a href="https://openstrings-academy.vercel.app/about.html" target="_blank">Open Strings Academy ↗</a>
@@ -358,6 +538,8 @@
           <a href="https://www.youtube.com/@alangrubner/featured" target="_blank" class="social-icon" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
           <a href="https://song.link/alagrubner" target="_blank" class="social-icon" aria-label="Spotify"><svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></a>
           <a href="https://soundcloud.com/alangrubner/sets" target="_blank" class="social-icon" aria-label="SoundCloud"><svg viewBox="0 0 24 24"><path d="M11.56 8.87V17h8.76c.71-.01 1.3-.3 1.74-.78.44-.47.67-1.06.67-1.72 0-1.23-.9-2.27-2.1-2.45.05-.24.08-.49.08-.74 0-2.16-1.75-3.91-3.91-3.91-1.29 0-2.43.62-3.14 1.57-.03 0-.07-.01-.1-.1z"/></svg></a>
+          <a href="https://music.apple.com/tr/album/long-road-home/476302784" target="_blank" class="social-icon" aria-label="Apple Music"><svg viewBox="0 0 24 24"><ellipse cx="6.5" cy="17.5" rx="3" ry="2" transform="rotate(-20 6.5 17.5)"/><ellipse cx="14.5" cy="14.5" rx="3" ry="2" transform="rotate(-20 14.5 14.5)"/><rect x="9" y="7" width="1.5" height="11"/><rect x="17" y="4" width="1.5" height="11"/><polygon points="9,1 18.5,-2 18.5,4 9,7"/></svg></a>
+          <a href="https://spacious.fm" target="_blank" class="social-icon" aria-label="Spacious.FM" style="padding:0; overflow:hidden; border-radius:4px;"><img src="spacious.jpeg" alt="Spacious.FM" style="width:100%; height:100%; object-fit:cover; display:block; filter:invert(1); transform:scale(1.15);"></a>
           <a href="https://alangrubner.bandcamp.com/" target="_blank" class="social-icon" aria-label="Bandcamp"><svg viewBox="0 0 24 24"><path d="M0 18.75l7.437-13.5H24l-7.438 13.5z"/></svg></a>
           <a href="https://www.linkedin.com/in/alan-grubner-99082519/" target="_blank" class="social-icon" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
           <a href="https://www.tiktok.com/@alangrubner" target="_blank" class="social-icon" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
@@ -371,6 +553,44 @@
   </footer>
 
   <script>
+    // Inline preview players
+    document.querySelectorAll('.preview-player').forEach(player => {
+      const audio = player.querySelector('.preview-audio');
+      const btn = player.querySelector('.preview-btn');
+      const playIco = player.querySelector('.play-ico');
+      const pauseIco = player.querySelector('.pause-ico');
+      const fill = player.querySelector('.preview-fill');
+
+      btn.addEventListener('click', () => {
+        const isPlaying = !audio.paused;
+        // Pause all other previews
+        document.querySelectorAll('.preview-audio').forEach(a => {
+          if (a !== audio) {
+            a.pause(); a.currentTime = 0;
+            const p = a.closest('.preview-player');
+            p.querySelector('.play-ico').style.display = 'block';
+            p.querySelector('.pause-ico').style.display = 'none';
+            p.querySelector('.preview-fill').style.width = '0%';
+          }
+        });
+        if (isPlaying) {
+          audio.pause();
+          playIco.style.display = 'block'; pauseIco.style.display = 'none';
+        } else {
+          audio.play();
+          playIco.style.display = 'none'; pauseIco.style.display = 'block';
+        }
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        if (audio.duration) fill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+      });
+      audio.addEventListener('ended', () => {
+        playIco.style.display = 'block'; pauseIco.style.display = 'none';
+        fill.style.width = '0%'; audio.currentTime = 0;
+      });
+    });
+
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 20); });
   </script>
