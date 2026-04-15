@@ -68,7 +68,7 @@
     .highlight-item { display: flex; align-items: center; gap: 0.75rem; white-space: nowrap; color: rgba(255,255,255,0.85); font-size: 0.78rem; letter-spacing: 0.08em; }
     .highlight-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.5); flex-shrink: 0; }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
       .hero-image { height: 50vh; }
       .hero-image::after { background: linear-gradient(to bottom, transparent 60%, var(--bg) 100%); }
@@ -294,7 +294,7 @@
     .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.25rem; color: var(--text); line-height: 0; }
     .nav-toggle svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
       .nav-toggle { display: flex; align-items: center; }
       .nav-links { display: none !important; position: fixed; top: 60px; left: 0; right: 0; background: rgba(250,249,246,0.98); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); flex-direction: column; padding: 0.5rem 1.5rem 1rem; gap: 0; z-index: 99; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
