@@ -255,7 +255,7 @@
     .footer-bottom p { font-size: 0.75rem; color: var(--text-light); }
     .footer-bottom a { color: var(--crimson); text-decoration: none; }
 
-    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.25rem; color: var(--text); line-height: 0; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; color: var(--text); line-height: 0; position: fixed; top: 14px; right: 1.5rem; z-index: 200; align-items: center; }
     .nav-toggle svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; }
 
     @media (max-width: 900px) {
@@ -405,8 +405,22 @@
     window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 20); });
     const toggle = document.getElementById('nav-toggle');
     const navLinks = document.getElementById('nav-links');
-    toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+    function checkMobile() {
+      if (window.innerWidth <= 900) {
+        toggle.style.display = 'flex';
+        navLinks.style.cssText = navLinks.classList.contains('open')
+          ? 'display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:rgba(250,249,246,0.98);border-bottom:1px solid #ddd8cf;padding:0.5rem 1.5rem 1rem;gap:0;z-index:99;box-shadow:0 8px 20px rgba(0,0,0,0.08);'
+          : 'display:none;';
+      } else {
+        toggle.style.display = 'none';
+        navLinks.style.cssText = 'display:flex;gap:2.5rem;';
+        navLinks.classList.remove('open');
+      }
+    }
+    toggle.addEventListener('click', () => { navLinks.classList.toggle('open'); checkMobile(); });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navLinks.classList.remove('open'); checkMobile(); }));
+    window.addEventListener('resize', checkMobile);
+    checkMobile();
 
     document.querySelectorAll('.contact-type[data-inquiry]').forEach(card => {
       const activate = () => {
