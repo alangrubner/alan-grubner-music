@@ -40,7 +40,6 @@
     .section-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--crimson); margin-bottom: 1rem; }
     .section-heading { font-family: var(--font-serif); font-size: 2rem; font-weight: 500; margin-bottom: 3rem; }
 
-    #audio-player { display: none; }
 
     .players-wrapper {
       display: flex;
@@ -119,8 +118,10 @@
     }
 
     .progress-container { flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
-    .progress-bar { height: 2px; background: var(--border); border-radius: 1px; overflow: hidden; }
-    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--crimson), #d4708f); transition: width 0.1s linear; }
+    .progress-bar { height: 2px; background: var(--border); border-radius: 1px; cursor: pointer; position: relative; }
+    .progress-bar::before { content: ''; position: absolute; top: -10px; bottom: -10px; left: 0; right: 0; }
+    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--crimson), #d4708f); border-radius: 1px; }
+    .progress-bar:not(.scrubbing) .progress-fill { transition: width 0.1s linear; }
     .progress-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); }
 
     footer { padding: 4rem 3rem 3rem; border-top: 1px solid var(--border); }
@@ -194,23 +195,8 @@
 
   <div class="watch-section">
 
-    <!-- Row 1: Audio + Solo Video -->
+    <!-- Row 1: Chordal Melody + Solo Video -->
     <div class="players-wrapper">
-      <div class="player-section">
-        <img src="https://openstrings.academy/assets/photo/alan_site_photo_thumb_compressed.png" alt="Audio preview" class="player-thumbnail">
-        <div class="player-controls">
-          <audio id="audio-player" src="https://openstrings.academy/assets/audio/01_convergence_compressed.m4a" loop preload="auto"></audio>
-          <button id="play-pause-btn">
-            <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            <svg id="pause-icon" viewBox="0 0 24 24" style="display:none;"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>
-          </button>
-          <div class="progress-container">
-            <div class="progress-bar"><div class="progress-fill" id="audio-progress-fill"></div></div>
-            <div class="progress-label">Audio Preview</div>
-          </div>
-        </div>
-      </div>
-
       <div class="player-section">
         <video id="video-player" poster="https://openstrings.academy/assets/photo/site_vid_thumb.jpg" preload="auto" loop>
           <source src="https://openstrings.academy/assets/video/alan_solo_site_topanga_comp.mp4" type="video/mp4">
@@ -222,7 +208,23 @@
           </button>
           <div class="progress-container">
             <div class="progress-bar"><div class="progress-fill" id="video-progress-fill"></div></div>
-            <div class="progress-label">Video Preview</div>
+            <div class="progress-label">topanga, solo ambient improvisation</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="player-section">
+        <video id="video-player-6" poster="thumb-chop.jpg" preload="metadata" loop>
+          <source src="chop_IG_waldorf.mp4" type="video/mp4">
+        </video>
+        <div class="player-controls">
+          <button id="video-play-pause-btn-6">
+            <svg id="video-play-icon-6" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="video-pause-icon-6" viewBox="0 0 24 24" style="display:none;"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>
+          </button>
+          <div class="progress-container">
+            <div class="progress-bar"><div class="progress-fill" id="video-progress-fill-6"></div></div>
+            <div class="progress-label">Chordal Melody w/ Voiceleading &amp; Triple Chop Mayhem</div>
           </div>
         </div>
       </div>
@@ -241,7 +243,7 @@
           </button>
           <div class="progress-container">
             <div class="progress-bar"><div class="progress-fill" id="video-progress-fill-2"></div></div>
-            <div class="progress-label">Video Preview</div>
+            <div class="progress-label">alan x bansara ambient</div>
           </div>
         </div>
       </div>
@@ -257,7 +259,7 @@
           </button>
           <div class="progress-container">
             <div class="progress-bar"><div class="progress-fill" id="video-progress-fill-3"></div></div>
-            <div class="progress-label">Video Preview</div>
+            <div class="progress-label">alan x bansara ambient #2</div>
           </div>
         </div>
       </div>
@@ -298,24 +300,6 @@
       </div>
     </div>
 
-    <!-- Row 4: Chop video -->
-    <div class="players-wrapper">
-      <div class="player-section half">
-        <video id="video-player-6" poster="thumb-chop.jpg" preload="metadata" loop>
-          <source src="chop_IG_waldorf.mp4" type="video/mp4">
-        </video>
-        <div class="player-controls">
-          <button id="video-play-pause-btn-6">
-            <svg id="video-play-icon-6" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            <svg id="video-pause-icon-6" viewBox="0 0 24 24" style="display:none;"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>
-          </button>
-          <div class="progress-container">
-            <div class="progress-bar"><div class="progress-fill" id="video-progress-fill-6"></div></div>
-            <div class="progress-label">Chordal Melody w/ Voiceleading &amp; Triple Chop Mayhem</div>
-          </div>
-        </div>
-      </div>
-    </div>
 
   </div>
 
@@ -367,31 +351,6 @@
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navLinks.classList.remove('open'); checkMobile(); }));
     window.addEventListener('resize', checkMobile);
     checkMobile();
-    // Audio Player
-    const audio = document.getElementById('audio-player');
-    const playPauseBtn = document.getElementById('play-pause-btn');
-    const playIcon = document.getElementById('play-icon');
-    const pauseIcon = document.getElementById('pause-icon');
-    const audioProgressFill = document.getElementById('audio-progress-fill');
-    const audioThumbnail = document.querySelector('.player-section:nth-child(1) .player-thumbnail');
-
-    function toggleAudio() {
-      if (audio.paused) {
-        audio.play(); playIcon.style.display = 'none'; pauseIcon.style.display = 'block';
-        if (!video.paused) { video.pause(); videoPlayIcon.style.display = 'block'; videoPauseIcon.style.display = 'none'; }
-        if (!video2.paused) { video2.pause(); videoPlayIcon2.style.display = 'block'; videoPauseIcon2.style.display = 'none'; }
-        if (!video3.paused) { video3.pause(); videoPlayIcon3.style.display = 'block'; videoPauseIcon3.style.display = 'none'; }
-        if (!video4.paused) { video4.pause(); videoPlayIcon4.style.display = 'block'; videoPauseIcon4.style.display = 'none'; }
-        if (!video5.paused) { video5.pause(); videoPlayIcon5.style.display = 'block'; videoPauseIcon5.style.display = 'none'; }
-        if (!video6.paused) { video6.pause(); videoPlayIcon6.style.display = 'block'; videoPauseIcon6.style.display = 'none'; }
-      } else { audio.pause(); playIcon.style.display = 'block'; pauseIcon.style.display = 'none'; }
-    }
-    playPauseBtn.addEventListener('click', toggleAudio);
-    audioThumbnail.addEventListener('click', toggleAudio);
-    audio.addEventListener('timeupdate', () => {
-      if (audio.duration) audioProgressFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
-    });
-
     // Video 1
     const video = document.getElementById('video-player');
     const videoPlayPauseBtn = document.getElementById('video-play-pause-btn');
@@ -402,7 +361,6 @@
     function toggleVideo() {
       if (video.paused) {
         video.play(); videoPlayIcon.style.display = 'none'; videoPauseIcon.style.display = 'block';
-        if (!audio.paused) { audio.pause(); playIcon.style.display = 'block'; pauseIcon.style.display = 'none'; }
         if (!video2.paused) { video2.pause(); videoPlayIcon2.style.display = 'block'; videoPauseIcon2.style.display = 'none'; }
         if (!video3.paused) { video3.pause(); videoPlayIcon3.style.display = 'block'; videoPauseIcon3.style.display = 'none'; }
         if (!video4.paused) { video4.pause(); videoPlayIcon4.style.display = 'block'; videoPauseIcon4.style.display = 'none'; }
@@ -426,7 +384,6 @@
     function toggleVideo2() {
       if (video2.paused) {
         video2.play(); videoPlayIcon2.style.display = 'none'; videoPauseIcon2.style.display = 'block';
-        if (!audio.paused) { audio.pause(); playIcon.style.display = 'block'; pauseIcon.style.display = 'none'; }
         if (!video.paused) { video.pause(); videoPlayIcon.style.display = 'block'; videoPauseIcon.style.display = 'none'; }
         if (!video3.paused) { video3.pause(); videoPlayIcon3.style.display = 'block'; videoPauseIcon3.style.display = 'none'; }
         if (!video4.paused) { video4.pause(); videoPlayIcon4.style.display = 'block'; videoPauseIcon4.style.display = 'none'; }
@@ -450,7 +407,6 @@
     function toggleVideo3() {
       if (video3.paused) {
         video3.play(); videoPlayIcon3.style.display = 'none'; videoPauseIcon3.style.display = 'block';
-        if (!audio.paused) { audio.pause(); playIcon.style.display = 'block'; pauseIcon.style.display = 'none'; }
         if (!video.paused) { video.pause(); videoPlayIcon.style.display = 'block'; videoPauseIcon.style.display = 'none'; }
         if (!video2.paused) { video2.pause(); videoPlayIcon2.style.display = 'block'; videoPauseIcon2.style.display = 'none'; }
         if (!video4.paused) { video4.pause(); videoPlayIcon4.style.display = 'block'; videoPauseIcon4.style.display = 'none'; }
@@ -474,8 +430,7 @@
     function toggleVideo4() {
       if (video4.paused) {
         video4.play(); videoPlayIcon4.style.display = 'none'; videoPauseIcon4.style.display = 'block';
-        if (!audio.paused) { audio.pause(); playIcon.style.display = 'block'; pauseIcon.style.display = 'none'; }
-        if (!video.paused) { video.pause(); videoPlayIcon.style.display = 'block'; videoPauseIcon.style.display = 'none'; }
+if (!video.paused) { video.pause(); videoPlayIcon.style.display = 'block'; videoPauseIcon.style.display = 'none'; }
         if (!video2.paused) { video2.pause(); videoPlayIcon2.style.display = 'block'; videoPauseIcon2.style.display = 'none'; }
         if (!video3.paused) { video3.pause(); videoPlayIcon3.style.display = 'block'; videoPauseIcon3.style.display = 'none'; }
         if (!video5.paused) { video5.pause(); videoPlayIcon5.style.display = 'block'; videoPauseIcon5.style.display = 'none'; }
@@ -498,8 +453,7 @@
     function toggleVideo5() {
       if (video5.paused) {
         video5.play(); videoPlayIcon5.style.display = 'none'; videoPauseIcon5.style.display = 'block';
-        if (!audio.paused) { audio.pause(); playIcon.style.display = 'block'; pauseIcon.style.display = 'none'; }
-        if (!video.paused) { video.pause(); videoPlayIcon.style.display = 'block'; videoPauseIcon.style.display = 'none'; }
+if (!video.paused) { video.pause(); videoPlayIcon.style.display = 'block'; videoPauseIcon.style.display = 'none'; }
         if (!video2.paused) { video2.pause(); videoPlayIcon2.style.display = 'block'; videoPauseIcon2.style.display = 'none'; }
         if (!video3.paused) { video3.pause(); videoPlayIcon3.style.display = 'block'; videoPauseIcon3.style.display = 'none'; }
         if (!video4.paused) { video4.pause(); videoPlayIcon4.style.display = 'block'; videoPauseIcon4.style.display = 'none'; }
@@ -522,8 +476,7 @@
     function toggleVideo6() {
       if (video6.paused) {
         video6.play(); videoPlayIcon6.style.display = 'none'; videoPauseIcon6.style.display = 'block';
-        if (!audio.paused) { audio.pause(); playIcon.style.display = 'block'; pauseIcon.style.display = 'none'; }
-        if (!video.paused) { video.pause(); videoPlayIcon.style.display = 'block'; videoPauseIcon.style.display = 'none'; }
+if (!video.paused) { video.pause(); videoPlayIcon.style.display = 'block'; videoPauseIcon.style.display = 'none'; }
         if (!video2.paused) { video2.pause(); videoPlayIcon2.style.display = 'block'; videoPauseIcon2.style.display = 'none'; }
         if (!video3.paused) { video3.pause(); videoPlayIcon3.style.display = 'block'; videoPauseIcon3.style.display = 'none'; }
         if (!video4.paused) { video4.pause(); videoPlayIcon4.style.display = 'block'; videoPauseIcon4.style.display = 'none'; }
@@ -536,6 +489,29 @@
       if (video6.duration) videoProgressFill6.style.width = (video6.currentTime / video6.duration * 100) + '%';
     });
 
+    // Scrubbing
+    function addScrubbing(videoEl, fillEl) {
+      const bar = fillEl.parentElement;
+      let scrubbing = false;
+      function seek(e) {
+        const rect = bar.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const ratio = Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
+        if (videoEl.duration) videoEl.currentTime = ratio * videoEl.duration;
+      }
+      bar.addEventListener('mousedown', e => { scrubbing = true; bar.classList.add('scrubbing'); seek(e); e.preventDefault(); });
+      window.addEventListener('mousemove', e => { if (scrubbing) seek(e); });
+      window.addEventListener('mouseup', () => { scrubbing = false; bar.classList.remove('scrubbing'); });
+      bar.addEventListener('touchstart', e => { scrubbing = true; bar.classList.add('scrubbing'); seek(e); }, { passive: true });
+      window.addEventListener('touchmove', e => { if (scrubbing) seek(e); }, { passive: true });
+      window.addEventListener('touchend', () => { scrubbing = false; bar.classList.remove('scrubbing'); });
+    }
+    addScrubbing(video, videoProgressFill);
+    addScrubbing(video2, videoProgressFill2);
+    addScrubbing(video3, videoProgressFill3);
+    addScrubbing(video4, videoProgressFill4);
+    addScrubbing(video5, videoProgressFill5);
+    addScrubbing(video6, videoProgressFill6);
   </script>
 </body>
 </html>
