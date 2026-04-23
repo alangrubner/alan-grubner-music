@@ -44,7 +44,7 @@
       --bg: #faf9f6; --bg-warm: #f3f0ea;
       --text: #1a1714; --text-mid: #4a4540; --text-light: #7a7068;
       --border: #ddd8cf;
-      --font-serif: 'Lora', Georgia, serif;
+      --font-serif: 'Lora', Cambria, serif;
       --font-sans: 'DM Sans', system-ui, sans-serif;
     }
     html { scroll-behavior: smooth; }
@@ -71,15 +71,16 @@
     .page-hero-inner {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 5rem 3rem;
+      padding: 3rem 3rem 3.5rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
+      grid-template-rows: auto auto;
+      gap: 2rem 5rem;
+      align-items: start;
     }
 
     .page-eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 1rem; }
-    .page-title { font-family: var(--font-serif); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.1; margin-bottom: 1.5rem; }
+    .page-title { font-family: var(--font-serif); font-size: clamp(1.4rem, 2vw, 2rem); font-weight: 500; line-height: 1.2; margin-bottom: 0; grid-column: 1 / -1; display: inline-block; border-bottom: 1px solid var(--crimson); padding-bottom: 0.3rem; }
 
     .page-hero p {
       font-family: var(--font-serif);
@@ -323,15 +324,26 @@
 
   <header class="page-hero">
     <div class="page-hero-inner">
+      <h1 class="page-title">Violin, Fiddle, Viola &amp; Improvisation Lessons<br>Park Slope, Brooklyn, New York &amp; Online</h1>
       <div>
         <p class="page-eyebrow">Teaching &amp; Education</p>
-        <h1 class="page-title">Violin Lessons in Brooklyn &amp; New York</h1>
-        <h2>Music as a wisdom path</h2>
-        <p>Alan's teaching method focuses on the immediacy of inner (evaluative) and outer (somatic) feedback as friendly information.</p>
-        <p>He remains committed to growing on this path; understanding music as a vehicle, a wisdom path that we can travel mindfully, ultimately leading us — beyond the instrument — into a field of mutual human Understanding, Wisdom &amp; Love.</p>
+        <h2>Music as a Wisdom Path</h2>
+        <p>Deeply influenced by the practice of Insight Meditation (Vipassana, IMS lineage), my teaching method focuses on the immediacy of <em>receiving feedback as friendly information.</em> We do this by systematically learning certain skills; refining our <em>non-judgmental awareness</em> to better distinguish sensory/somatic experience in the body versus discursive/evaluative forces in the mind. Sincerely, learning &amp; teaching Music in this way enriches <em>all aspects</em> of my life, beyond measure.</p>
       </div>
-      <div class="hero-quote">
-        "There is a path whereby we can cultivate a friendly, non-judgmental and discerning awareness — understanding music as a vehicle, a wisdom path that leads us beyond the instrument into a field of mutual human Understanding, Wisdom &amp; Love."
+      <div>
+        <div class="hero-quote" style="font-size: 1.08rem; font-style: normal; line-height: 1.85; color: rgba(255,255,255,0.65);">
+          There is a Path whereby we cultivate a friendly, non-judgmental and discerning awareness — understanding music as a vehicle — carrying us beyond the instrument into a field of wisdom &amp; love.
+        </div>
+        <div class="hero-quote" style="margin-top: 2rem; font-size: 1.08rem; font-style: normal; line-height: 1.85; color: rgba(255,255,255,0.65);">
+          I'm committed to our growing together on this Path; to deepening our understanding of Music as a beautiful vehicle for cultivating Mindfulness.
+        </div>
+        <div style="margin-top: 2rem; border-left: 2px solid var(--crimson); padding-left: 1.75rem; display: flex; align-items: center; gap: 1.25rem;">
+          <div style="flex: 1;">
+            <p style="font-family: var(--font-serif); font-size: 1.15rem; font-style: italic; line-height: 1.65; color: rgba(255,255,255,0.55); margin: 0 0 0.6rem;">"Understanding is love's other name. If you don't understand, you can't love."</p>
+            <p style="font-family: var(--font-sans); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin: 0;">― Thích Nhất Hạnh, <em>How to Love</em></p>
+          </div>
+          <img src="tnh-mlk-teaching.jpg" alt="Thích Nhất Hạnh and Martin Luther King Jr." style="width: 38%; border-radius: 8px; display: block; flex-shrink: 0;">
+        </div>
       </div>
     </div>
   </header>
@@ -339,28 +351,26 @@
   <!-- APPROACH -->
   <section class="approach">
     <div class="approach-inner">
-      <div class="approach-text">
-        <p class="section-label">Philosophy</p>
-        <h2 class="section-heading">The teaching approach</h2>
-        <p>Over the years, silent retreat practice in IMS lineage Insight Meditation led Alan to an ongoing discovery: there is a path whereby we can cultivate a friendly, non-judgmental and discerning awareness.</p>
-        <p>Alan's teaching method focuses on the immediacy of inner (evaluative) and outer (somatic) feedback as friendly information — understanding music as a vehicle, a wisdom path that we can travel mindfully.</p>
-      </div>
-      <div class="pillars">
+      <div class="pillars" style="grid-column: 1 / -1;">
         <div class="pillar">
-          <p class="pillar-title">Inner &amp; Outer Feedback</p>
-          <p class="pillar-desc">— Learning to receive evaluative (inner) and somatic (outer) feedback as friendly information</p>
+          <p class="pillar-title">Violin &amp; Viola</p>
+          <p class="pillar-desc">— Suzuki-informed, hybrid approach; embracing of all students' musical curiosities</p>
         </div>
         <div class="pillar">
-          <p class="pillar-title">Non-Judgmental Awareness</p>
-          <p class="pillar-desc">— Cultivating a friendly, non-judgmental and discerning awareness through the instrument</p>
+          <p class="pillar-title">Fiddle</p>
+          <p class="pillar-desc">— Bluegrass, folk &amp; jazz studies; from the ground up</p>
         </div>
         <div class="pillar">
           <p class="pillar-title">Improvisation</p>
           <p class="pillar-desc">— Rooted in Alan's M.M. in jazz studies at Berklee College of Music, bringing improvisation into classical and folk contexts</p>
         </div>
         <div class="pillar">
-          <p class="pillar-title">Music as a Wisdom Path</p>
-          <p class="pillar-desc">— Understanding music as a vehicle that leads us — beyond the instrument — into a field of mutual human Understanding, Wisdom &amp; Love</p>
+          <p class="pillar-title">Songwriting &amp; Production</p>
+          <p class="pillar-desc">— Learn the art of self-expression &amp; building something tangible to share</p>
+        </div>
+        <div class="pillar">
+          <p class="pillar-title">Non-Judgmental Awareness</p>
+          <p class="pillar-desc">— Cultivating a friendly, non-judgmental and discerning awareness through the instrument</p>
         </div>
       </div>
     </div>
@@ -390,7 +400,7 @@
         </div>
         <div class="osa-feature">
           <div class="osa-feature-dot"></div>
-          <span>A community for musicians traveling the instrument as a wisdom path</span>
+          <span>A community for musicians traveling the instrument as a Wisdom Path</span>
         </div>
       </div>
     </div>
