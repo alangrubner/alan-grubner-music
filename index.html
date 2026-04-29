@@ -93,9 +93,12 @@
     .btn-secondary:hover { border-color: var(--crimson); color: var(--crimson); }
 
     /* HIGHLIGHTS */
-    .highlights { background: var(--crimson); padding: 1.25rem 3rem; display: flex; gap: 3rem; overflow-x: auto; align-items: center; }
-    .highlight-item { display: flex; align-items: center; gap: 0.75rem; white-space: nowrap; color: rgba(255,255,255,0.85); font-size: 0.78rem; letter-spacing: 0.08em; }
+    .highlights { background: var(--crimson); padding: 1.25rem 0; overflow: hidden; position: relative; }
+    .highlights-track { display: flex; gap: 2.5rem; width: max-content; align-items: center; animation: ticker-scroll 40s linear infinite; }
+    .highlights-track:hover { animation-play-state: paused; cursor: default; }
+    .highlight-item { white-space: nowrap; color: rgba(255,255,255,0.85); font-size: 0.78rem; letter-spacing: 0.08em; }
     .highlight-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.5); flex-shrink: 0; }
+    @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
@@ -377,17 +380,27 @@
   </section>
 
   <div class="highlights">
-    <div class="highlight-item">Carnegie Hall · 14 Concerts</div>
-    <div class="highlight-dot"></div>
-    <div class="highlight-item">CNN · ABC Good Morning America · Sirius XM</div>
-    <div class="highlight-dot"></div>
-    <div class="highlight-item">Grand Ole Opry · Shanghai World Expo 2010</div>
-    <div class="highlight-dot"></div>
-    <div class="highlight-item">Levon Helm Studios · WFMU · WWOZ</div>
-    <div class="highlight-dot"></div>
-    <div class="highlight-item">Berklee Graduate Assistantship · First Violinist in Jazz Studies</div>
-    <div class="highlight-dot"></div>
-    <div class="highlight-item">24 Years with Allan Harris &amp; Cross That River</div>
+    <div class="highlights-track">
+      <div class="highlight-item">Carnegie Hall &ensp;·&ensp; 14 Concerts</div>
+      <div class="highlight-dot"></div>
+      <div class="highlight-item">Featured on CNN &ensp;·&ensp; ABC Good Morning America &ensp;·&ensp; Sirius XM</div>
+      <div class="highlight-dot"></div>
+      <div class="highlight-item">Grand Ole Opry &ensp;·&ensp; Shanghai World Expo 2010</div>
+      <div class="highlight-dot"></div>
+      <div class="highlight-item">Levon Helm Studios &ensp;·&ensp; WFMU &ensp;·&ensp; WWOZ</div>
+      <div class="highlight-dot"></div>
+      <div class="highlight-item">Berklee Graduate Assistantship &ensp;·&ensp; First violinist ever accepted to Berklee College of Music M.M. Jazz Program</div>
+      <div class="highlight-dot"></div>
+      <div class="highlight-item">Carnegie Hall &ensp;·&ensp; 14 Concerts</div>
+      <div class="highlight-dot"></div>
+      <div class="highlight-item">Featured on CNN &ensp;·&ensp; ABC Good Morning America &ensp;·&ensp; Sirius XM</div>
+      <div class="highlight-dot"></div>
+      <div class="highlight-item">Grand Ole Opry &ensp;·&ensp; Shanghai World Expo 2010</div>
+      <div class="highlight-dot"></div>
+      <div class="highlight-item">Levon Helm Studios &ensp;·&ensp; WFMU &ensp;·&ensp; WWOZ</div>
+      <div class="highlight-dot"></div>
+      <div class="highlight-item">Berklee Graduate Assistantship &ensp;·&ensp; First violinist ever accepted to Berklee College of Music M.M. Jazz Program</div>
+    </div>
   </div>
 
   <div class="pull-quote">
