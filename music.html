@@ -58,8 +58,8 @@
     .nav-links a:hover, .nav-links a.active { color: var(--crimson); }
     .nav-links .nav-current { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--crimson); }
 
-    .page-header { padding-top: 72px; background: var(--bg-warm); border-bottom: 1px solid var(--border); }
-    .page-header-inner { max-width: 1100px; margin: 0 auto; padding: 5rem 3rem 4rem; }
+    .page-header { padding-top: 72px; background: linear-gradient(to bottom, #e2ddd4, var(--bg)); }
+    .page-header-inner { max-width: 1100px; margin: 0 auto; padding: 5rem 3rem 0; }
     .page-eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--crimson); margin-bottom: 1rem; }
     .page-title { font-family: var(--font-serif); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.1; margin-bottom: 1.5rem; display: inline-block; border-bottom: 1px solid var(--crimson); padding-bottom: 0.85rem; }
     .page-intro { font-family: var(--font-serif); font-size: 1.05rem; font-style: italic; color: var(--text-mid); max-width: 60ch; line-height: 1.7; }
@@ -77,21 +77,20 @@
     }
 
     /* RELEASES */
-    .releases { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
+    .releases { padding: 0.25in 3rem 5rem; max-width: 1100px; margin: 0 auto; }
 
     .section-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--crimson); margin-bottom: 1rem; }
     .section-heading { font-family: var(--font-serif); font-size: 2rem; font-weight: 500; margin-bottom: 3rem; }
 
-    .release-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .release-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
 
     .release-card {
       min-width: 0;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      transition: box-shadow 0.2s;
-      overflow: hidden;
+      border: none;
+      background: none;
+      overflow: visible;
     }
-    .release-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+    .release-card:hover { box-shadow: none; }
 
     .release-artwork {
       aspect-ratio: 1;
@@ -100,7 +99,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      border-bottom: 1px solid var(--border);
+      border-bottom: none;
     }
 
     .release-artwork-placeholder {
@@ -121,35 +120,35 @@
 
     .release-artwork-icon svg { width: 100%; height: 100%; fill: currentColor; }
 
-    .release-info { padding: 1.5rem; }
+    .release-info { padding: 0.85rem 0 0; border-top: 1px solid var(--border); }
 
     .release-type {
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--crimson);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.2rem;
     }
 
     .release-title {
       font-family: var(--font-serif);
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 500;
       color: var(--text);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.15rem;
     }
 
     .release-artist {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-light);
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
     }
 
     .release-desc {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--text-mid);
-      line-height: 1.6;
-      margin-bottom: 1.25rem;
+      line-height: 1.55;
+      margin-bottom: 0.85rem;
     }
 
     .release-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
@@ -182,6 +181,11 @@
       background: var(--bg-warm);
       border-top: 1px solid var(--border);
       padding: 5rem 3rem;
+    }
+    .appearances-arranger {
+      background: linear-gradient(to bottom, var(--bg) 0%, var(--bg-warm) 65%);
+      border-top: none;
+      margin-top: -0.9in;
     }
     .appearances-inner { max-width: 1100px; margin: 0 auto; }
 
@@ -363,7 +367,7 @@
       <!-- Resurgence -->
       <div class="release-card">
         <div class="release-artwork">
-          <img src="resurgence.jpg" alt="Resurgence album cover" style="width:100%; height:100%; object-fit:cover; display:block;">
+          <img src="resurgence-cover.png" alt="Resurgence album cover" style="width:100%; height:100%; object-fit:cover; display:block;">
         </div>
         <div class="release-info">
           <p class="release-type">Album · Alan Grubner &amp; Bansara</p>
@@ -605,6 +609,14 @@
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navLinks.classList.remove('open'); checkMobile(); }));
     window.addEventListener('resize', checkMobile);
     checkMobile();
+    // Click album artwork to play
+    document.querySelectorAll('.release-artwork').forEach(artwork => {
+      artwork.style.cursor = 'pointer';
+      artwork.addEventListener('click', () => {
+        artwork.closest('.release-card').querySelector('.preview-btn').click();
+      });
+    });
+
     // Inline preview players
     document.querySelectorAll('.preview-player').forEach(player => {
       const audio = player.querySelector('.preview-audio');
