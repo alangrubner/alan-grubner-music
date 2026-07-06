@@ -1,8 +1,0 @@
-{
-  "name": "alan-grubner-music",
-  "version": "1.0.0",
-  "scripts": {
-    "deploy": "netlify deploy --prod --dir=.",
-    "deploy:preview": "netlify deploy --dir=."
-  }
-}
