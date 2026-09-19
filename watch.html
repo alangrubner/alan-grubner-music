@@ -47,7 +47,7 @@
     .page-title { font-family: var(--font-serif); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.1; margin-bottom: 1.5rem; display: inline-block; border-bottom: 1px solid var(--crimson); padding-bottom: 0.85rem; min-width: 30rem; }
     .page-intro { font-family: var(--font-serif); font-size: 1.05rem; font-style: italic; color: var(--text-mid); max-width: 60ch; line-height: 1.7; }
 
-    .watch-section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
+    .watch-section { padding: 2rem 3rem 5rem; max-width: 1100px; margin: 0 auto; }
     .section-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--crimson); margin-bottom: 1rem; }
     .section-heading { font-family: var(--font-serif); font-size: 2rem; font-weight: 500; margin-bottom: 3rem; }
 
@@ -181,14 +181,22 @@
 
   <div class="watch-section">
 
-    <!-- Vimeo: improv 1 — centered, first video on page -->
-    <div style="display:flex; justify-content:center; margin-top:0;">
+    <!-- Vimeo: improv 1 + bird on parade — side by side, centered as a pair -->
+    <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:2rem; margin-top:0; margin-bottom:2.5rem;">
       <div style="width:100%; max-width:380px;">
-        <div style="padding:106.04% 0 0 0; position:relative;">
+        <div style="padding:56.25% 0 0 0; position:relative;">
           <iframe id="vimeo-player-7" src="https://player.vimeo.com/video/1228196651?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="improv 1"></iframe>
         </div>
         <script src="https://player.vimeo.com/api/player.js"></script>
-        <div style="margin-top:1rem; display:flex; align-items:center; gap:1.5rem;">
+        <div style="margin-top:0.5rem; display:flex; align-items:center; justify-content:center; gap:1.5rem;">
+          <div style="font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-light);">solo w/ programming &amp; reactive visuals</div>
+        </div>
+      </div>
+      <div style="width:100%; max-width:380px;">
+        <div style="padding:56.25% 0 0 0; position:relative;">
+          <iframe id="vimeo-player-8" src="https://player.vimeo.com/video/1228242104?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="bird on parade"></iframe>
+        </div>
+        <div style="margin-top:0.5rem; display:flex; align-items:center; justify-content:center; gap:1.5rem;">
           <div style="font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-light);">solo w/ programming &amp; reactive visuals</div>
         </div>
       </div>
@@ -292,18 +300,6 @@
             <div class="progress-bar"><div class="progress-fill" id="video-progress-fill-4"></div></div>
             <div class="progress-label">E. Vln solo on It's Your Turn by Johnbern Thomas</div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Vimeo: alfonsina bolinas birds — centered -->
-    <div style="display:flex; justify-content:center; margin-top:2rem;">
-      <div style="width:100%; max-width:640px;">
-        <div style="padding:56.25% 0 0 0; position:relative;">
-          <iframe id="vimeo-player-8" src="https://player.vimeo.com/video/1207516088?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="alfonsina bolinas birds"></iframe>
-        </div>
-        <div style="margin-top:1rem; display:flex; align-items:center; gap:1.5rem;">
-          <div style="font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-light);">solo w/ programming &amp; reactive visuals</div>
         </div>
       </div>
     </div>
